@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -17,7 +13,7 @@ namespace AspnetCoreRC2Poc
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+       public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -32,7 +28,7 @@ namespace AspnetCoreRC2Poc
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-        }
+        } 
 
         public IConfigurationRoot Configuration { get; }
 
@@ -45,13 +41,16 @@ namespace AspnetCoreRC2Poc
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders(); 
+
+            
 
             services.AddMvc();
+           
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +61,7 @@ namespace AspnetCoreRC2Poc
 
             if (env.IsDevelopment())
             {
+                app.UseWelcomePage();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();

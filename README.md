@@ -1,12 +1,10 @@
-# Welcome to ASP.NET Core
+# Basics Of  ASP.NET Core
 
-We've made some big updates in this release, so it’s **important** that you spend a few minutes to learn what’s new.
+This POC is dedicated to understand the full concepts of the ASP.Net Core
 
-You've created a new ASP.NET Core project. [Learn what's new](https://go.microsoft.com/fwlink/?LinkId=518016)
+## 7-06-2016:
 
-## This application consists of:
-
-*   Sample pages using ASP.NET Core MVC
+*   Understanding the StartUp class - ConfigureServices and Configure methods.
 *   [Gulp](https://go.microsoft.com/fwlink/?LinkId=518007) and [Bower](https://go.microsoft.com/fwlink/?LinkId=518004) for managing client-side libraries
 *   Theming using [Bootstrap](https://go.microsoft.com/fwlink/?LinkID=398939)
 
