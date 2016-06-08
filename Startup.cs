@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using AspnetCoreRC2Poc.Data;
 using AspnetCoreRC2Poc.Models;
 using AspnetCoreRC2Poc.Services;
+using AspnetCoreRC2Poc.Middleware;
 
 namespace AspnetCoreRC2Poc
 {
@@ -43,7 +44,7 @@ namespace AspnetCoreRC2Poc
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders(); 
 
-            
+        
 
             services.AddMvc();
            
@@ -70,7 +71,7 @@ namespace AspnetCoreRC2Poc
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            app.UseRequestLogger();
             app.UseStaticFiles();
 
             app.UseIdentity();
