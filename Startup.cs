@@ -63,10 +63,10 @@ namespace AspnetCoreRC2Poc
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            app.UseWelcomePage("/welcome");
             if (env.IsDevelopment())
             {
-                app.UseWelcomePage();
+               
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
