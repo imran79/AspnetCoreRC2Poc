@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace AspnetCoreRC2Poc.Middleware
 {
-
-    public class RequestLoggerMiddleware{
-
+    public class RequestLoggerMiddleware
+    {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-         public RequestLoggerMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
+        public RequestLoggerMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
             _next = next;
             _logger = loggerFactory.CreateLogger<RequestLoggerMiddleware>();
@@ -24,16 +23,15 @@ namespace AspnetCoreRC2Poc.Middleware
             _logger.LogInformation("Finished handling request.");
         }
 
-
     }
 
     public static class RequestLoggerExtensions
-{
-    public static IApplicationBuilder UseRequestLogger(this IApplicationBuilder builder)
     {
-        return builder.UseMiddleware<RequestLoggerMiddleware>();
+        public static IApplicationBuilder UseRequestLogger(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<RequestLoggerMiddleware>();
+        }
     }
-}
-    
+
 }
 

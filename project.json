@@ -1,6 +1,5 @@
 {
-  "userSecretsId": "aspnet-AspnetCoreRC2Poc-db746c71-ca71-42ac-803b-05fae29eaceb",
-
+  "userSecretsId": "aspnet-AspnetCoreRC2Poc-db746c71-ca71-42ac-803b-05fae29eaceb", 
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.0-rc2-3002702",
@@ -81,7 +80,8 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+     "debugType": "portable"
   },
 
   "runtimeOptions": {

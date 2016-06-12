@@ -9,12 +9,16 @@ using AspnetCoreRC2Poc.Data;
 using AspnetCoreRC2Poc.Models;
 using AspnetCoreRC2Poc.Services;
 using AspnetCoreRC2Poc.Middleware;
+using Microsoft.AspNetCore.Routing;
+using AspnetCoreRC2Poc.RouteSample;
+using Microsoft.AspNetCore.Http;
+
 
 namespace AspnetCoreRC2Poc
 {
     public class Startup
     {
-       public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -29,7 +33,7 @@ namespace AspnetCoreRC2Poc
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-        } 
+        }
 
         public IConfigurationRoot Configuration { get; }
 
@@ -42,16 +46,16 @@ namespace AspnetCoreRC2Poc
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders(); 
+                .AddDefaultTokenProviders();
 
-        
 
+            services.AddRouting();
             services.AddMvc();
-           
+
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>(); 
+            services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,12 +76,31 @@ namespace AspnetCoreRC2Poc
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseRequestLogger();
+            // Using of the static files u can also declare options 
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true
+            });
+            //app.UseFileServer();
 
             app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
+            var defaultHandler = new RouteHandler((c) =>
+         c.Response.WriteAsync($"Hello world! Route values: " +
+         $"{string.Join(", ", c.GetRouteData().Values)}")
+         );
 
+            var routeBuilder = new RouteBuilder(app, defaultHandler);
+
+            routeBuilder.AddHelloRoute(app);
+
+            routeBuilder.MapRoute(
+                "Track Package Route",
+                "package/{operation:regex(track|create|detonate)}/{id:int}");
+
+            app.UseRouter(routeBuilder.Build());
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
