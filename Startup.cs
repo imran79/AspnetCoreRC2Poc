@@ -12,6 +12,9 @@ using AspnetCoreRC2Poc.Middleware;
 using Microsoft.AspNetCore.Routing;
 using AspnetCoreRC2Poc.RouteSample;
 using Microsoft.AspNetCore.Http;
+using System;
+using System.Text;
+
 
 
 namespace AspnetCoreRC2Poc
@@ -66,10 +69,11 @@ namespace AspnetCoreRC2Poc
             app.UseWelcomePage("/welcome");
             if (env.IsDevelopment())
             {
-               
+
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
+
             }
             else
             {
