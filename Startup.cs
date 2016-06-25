@@ -12,8 +12,7 @@ using AspnetCoreRC2Poc.Middleware;
 using Microsoft.AspNetCore.Routing;
 using AspnetCoreRC2Poc.RouteSample;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Text;
+
 
 
 
@@ -27,6 +26,9 @@ namespace AspnetCoreRC2Poc
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+               // .AddEntityFrameworkConfig(options =>
+      // options.UseSqlServer(connectionStringConfig.GetConnectionString("DefaultConnection")));
+        
 
             if (env.IsDevelopment())
             {
@@ -44,12 +46,12 @@ namespace AspnetCoreRC2Poc
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
+           /* services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders();*/
 
 
             services.AddRouting();
@@ -88,7 +90,7 @@ namespace AspnetCoreRC2Poc
             });
             //app.UseFileServer();
 
-            app.UseIdentity();
+          //  app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
             var defaultHandler = new RouteHandler((c) =>

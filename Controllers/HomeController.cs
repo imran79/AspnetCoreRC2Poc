@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspnetCoreRC2Poc.Controllers
@@ -6,6 +7,22 @@ namespace AspnetCoreRC2Poc.Controllers
     {
         public IActionResult Index()
         {
+
+             using (var db = new BloggingContext())
+            {
+                try{
+                db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+             //   var count = db.SaveChanges();
+                }
+                catch(Exception ex){
+                    
+                }
+                foreach (var blog in db.Blogs)
+                {
+                   // Console.WriteLine(" - {0}", blog.Url);
+                }
+            }
+
             return View();
         }
 

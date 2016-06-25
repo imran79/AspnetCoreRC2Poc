@@ -4,7 +4,7 @@ using AspnetCoreRC2Poc.Models;
 
 namespace AspnetCoreRC2Poc.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+  /**  public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -19,4 +19,5 @@ namespace AspnetCoreRC2Poc.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
     }
+    **/
 }
